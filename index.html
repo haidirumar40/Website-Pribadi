@@ -1,0 +1,673 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Haidir Umar - Profil Akademik</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #2c3e50;
+            --secondary: #3498db;
+            --accent: #e74c3c;
+            --light: #ecf0f1;
+            --dark: #2c3e50;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: var(--light);
+            color: var(--dark);
+            line-height: 1.6;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        header {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            padding: 60px 0 100px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        header::after {
+            content: '';
+            position: absolute;
+            bottom: -50px;
+            left: 0;
+            right: 0;
+            height: 100px;
+            background: var(--light);
+            transform: skewY(-3deg);
+            z-index: 1;
+        }
+        
+        .profile-img {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 5px solid white;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+            margin-bottom: 20px;
+            transition: transform 0.3s;
+            z-index: 2;
+            position: relative;
+        }
+        
+        .profile-img:hover {
+            transform: scale(1.05);
+        }
+        
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+            z-index: 2;
+            position: relative;
+        }
+        
+        .tagline {
+            font-size: 1.2rem;
+            opacity: 0.9;
+            margin-bottom: 20px;
+            z-index: 2;
+            position: relative;
+        }
+        
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-bottom: 30px;
+            z-index: 2;
+            position: relative;
+        }
+        
+        .social-links a {
+            color: white;
+            font-size: 1.5rem;
+            transition: transform 0.3s;
+        }
+        
+        .social-links a:hover {
+            transform: translateY(-5px);
+            color: var(--accent);
+        }
+        
+        section {
+            padding: 60px 0;
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 40px;
+            position: relative;
+        }
+        
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 3px;
+            background: var(--secondary);
+        }
+        
+        .timeline {
+            position: relative;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px 0;
+        }
+        
+        .timeline::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 2px;
+            height: 100%;
+            background: var(--secondary);
+        }
+        
+        .timeline-item {
+            position: relative;
+            margin-bottom: 40px;
+        }
+        
+        .timeline-item:nth-child(odd) {
+            padding-right: 50%;
+            text-align: right;
+        }
+        
+        .timeline-item:nth-child(even) {
+            padding-left: 50%;
+            text-align: left;
+        }
+        
+        .timeline-content {
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            position: relative;
+        }
+        
+        .timeline-content::before {
+            content: '';
+            position: absolute;
+            top: 20px;
+            width: 20px;
+            height: 20px;
+            background: white;
+            transform: rotate(45deg);
+            box-shadow: 5px -5px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        .timeline-item:nth-child(odd) .timeline-content::before {
+            right: -10px;
+        }
+        
+        .timeline-item:nth-child(even) .timeline-content::before {
+            left: -10px;
+        }
+        
+        .timeline-date {
+            color: var(--accent);
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+        
+        .skills {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 20px;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .skill-card {
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            width: calc(33.333% - 20px);
+            transition: transform 0.3s;
+        }
+        
+        .skill-card:hover {
+            transform: translateY(-10px);
+        }
+        
+        .skill-card i {
+            font-size: 2.5rem;
+            color: var(--secondary);
+            margin-bottom: 15px;
+        }
+        
+        .projects {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+        
+        .project-card {
+            background: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s;
+        }
+        
+        .project-card:hover {
+            transform: translateY(-10px);
+        }
+        
+        .project-img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+        
+        .project-info {
+            padding: 20px;
+        }
+        
+        .project-title {
+            font-size: 1.2rem;
+            margin-bottom: 10px;
+            color: var(--primary);
+        }
+        
+        .project-links {
+            display: flex;
+            gap: 10px;
+            margin-top: 15px;
+        }
+        
+        .project-links a {
+            padding: 8px 15px;
+            background: var(--secondary);
+            color: white;
+            border-radius: 4px;
+            text-decoration: none;
+            font-size: 0.9rem;
+            transition: background 0.3s;
+        }
+        
+        .project-links a:hover {
+            background: var(--primary);
+        }
+        
+        footer {
+            background: var(--dark);
+            color: white;
+            text-align: center;
+            padding: 30px 0;
+            margin-top: 60px;
+        }
+        
+        .contact-form {
+            max-width: 600px;
+            margin: 0 auto;
+            background: white;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+        
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 1rem;
+        }
+        
+        .form-group textarea {
+            height: 150px;
+        }
+        
+        .submit-btn {
+            background: var(--secondary);
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 1rem;
+            transition: background 0.3s;
+        }
+        
+        .submit-btn:hover {
+            background: var(--primary);
+        }
+        
+        @media (max-width: 768px) {
+            .timeline::before {
+                left: 30px;
+            }
+            
+            .timeline-item:nth-child(odd),
+            .timeline-item:nth-child(even) {
+                padding-left: 80px;
+                padding-right: 0;
+                text-align: left;
+            }
+            
+            .timeline-item:nth-child(odd) .timeline-content::before,
+            .timeline-item:nth-child(even) .timeline-content::before {
+                left: 60px;
+                right: auto;
+            }
+            
+            .skill-card {
+                width: calc(50% - 20px);
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .skill-card {
+                width: 100%;
+            }
+            
+            h1 {
+                font-size: 2rem;
+            }
+            
+            .tagline {
+                font-size: 1rem;
+            }
+        }
+        
+        /* Animations */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .animate {
+            animation: fadeIn 1s ease-out forwards;
+        }
+        
+        .delay-1 { animation-delay: 0.2s; }
+        .delay-2 { animation-delay: 0.4s; }
+        .delay-3 { animation-delay: 0.6s; }
+        .delay-4 { animation-delay: 0.8s; }
+        
+        /* Dark mode toggle */
+        .dark-mode-toggle {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: 100;
+            background: var(--light);
+            border: none;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s;
+        }
+        
+        .dark-mode-toggle:hover {
+            transform: scale(1.1);
+        }
+        
+        body.dark-mode {
+            --light: #1a1a2e;
+            --dark: #f1f1f1;
+            background-color: var(--light);
+            color: var(--dark);
+        }
+        
+        body.dark-mode .timeline-content,
+        body.dark-mode .skill-card,
+        body.dark-mode .project-card,
+        body.dark-mode .contact-form {
+            background: #16213e;
+            color: var(--dark);
+        }
+        
+        body.dark-mode footer {
+            background: #0f3460;
+        }
+    </style>
+</head>
+<body>
+    <button class="dark-mode-toggle" id="darkModeToggle">
+        <i class="fas fa-moon"></i>
+    </button>
+    
+    <header>
+        <div class="container">
+            <img src="foto profil 3.png" alt="Haidir Umar" class="profile-img animate">
+            <h1 class="animate delay-1">Haidir Umar</h1>
+            <p class="tagline animate delay-1">Mahasiswa Teknik Informatika | IT PLN Jakarta</p>
+            <div class="social-links animate delay-2">
+                <a href="https://www.linkedin.com/in/haidir-umar-755263265/"><i class="fab fa-linkedin"></i></a>
+                <a href="https://github.com/haidirumar"><i class="fab fa-github"></i></a>
+                <a href="https://x.com/"><i class="fab fa-twitter"></i></a>
+                <a href="https://www.instagram.com/haidirumr___/"><i class="fab fa-instagram"></i></a>
+            </div>
+        </div>
+    </header>
+    
+    <section id="about">
+        <div class="container">
+            <h2 class="section-title">Tentang Saya</h2>
+            <div class="about-content" style="max-width: 800px; margin: 0 auto; text-align: center;">
+                <p class="animate delay-1">Saya Haidir Umar, lulusan D1 VOKASI TIK dengan jurusan Pengelolaan Sistem dan Jaringan. Saat ini sedang melanjutkan studi S1 di Institut Teknologi PLN pada jurusan Teknik Informatika.</p>
+                <p class="animate delay-2">Memiliki minat besar dalam pengembangan sistem, jaringan komputer, dan teknologi informasi secara umum. Selalu bersemangat untuk mempelajari hal-hal baru dan menerapkan pengetahuan yang dimiliki untuk menyelesaikan masalah nyata.</p>
+                <div style="margin-top: 30px;">
+    <a href="CV-HAIDIR UMAR.pdf.pdf" download class="submit-btn">
+        📄 Download CV
+    </a>
+</div>
+    </div>
+        </div>
+    </section>
+    
+    <section id="education" style="background-color: #f8f9fa;">
+        <div class="container">
+            <h2 class="section-title">Pendidikan</h2>
+            <div class="timeline">
+                <div class="timeline-item animate">
+                    <div class="timeline-content">
+                        <div class="timeline-date">2022 - Sekarang</div>
+                        <h3>Institut Teknologi PLN</h3>
+                        <p>S1 Teknik Informatika</p>
+                        <p>Melanjutkan studi di bidang Teknik Informatika dengan fokus pada pengembangan perangkat lunak dan IOT.</p>
+                    </div>
+                </div>
+                <div class="timeline-item animate delay-1">
+                    <div class="timeline-content">
+                        <div class="timeline-date">2021 - 2022</div>
+                        <h3>VOKASI PeTIK</h3>
+                        <p>Diploma 1 Pengelolaan Sistem dan Jaringan</p>
+                        <p>Mempelajari dasar-dasar jaringan komputer, administrasi sistem, dan keamanan jaringan. Lulus dengan predikat sangat memuaskan.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <section id="skills">
+        <div class="container">
+            <h2 class="section-title">Keahlian</h2>
+            <div class="skills">
+                <div class="skill-card animate">
+                    <i class="fas fa-network-wired"></i>
+                    <h3>Jaringan Komputer</h3>
+                    <p>Pengalaman dalam mengelola dan mengkonfigurasi jaringan komputer, termasuk routing, switching, dan keamanan jaringan.</p>
+                </div>
+                <div class="skill-card animate delay-1">
+                    <i class="fas fa-code"></i>
+                    <h3>Pengembangan Web</h3>
+                    <p>Menguasai HTML, CSS, JavaScript dan framework modern untuk membangun aplikasi web yang responsif.</p>
+                </div>
+                <div class="skill-card animate delay-2">
+                    <i class="fas fa-server"></i>
+                    <h3>Administrasi Sistem</h3>
+                    <p>Kemampuan dalam mengelola server Linux/Windows, virtualisasi, dan layanan jaringan.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <section id="projects" style="background-color: #f8f9fa;">
+        <div class="container">
+            <h2 class="section-title">Proyek</h2>
+            <div class="projects">
+                <div class="project-card animate">
+                    <img src="sistem monitoring.jpg" alt="Proyek 1" class="project-img">
+                    <div class="project-info">
+                        <h3 class="project-title">Sistem Monitoring Jaringan</h3>
+                        <p>Aplikasi untuk memantau kesehatan jaringan dan server secara real-time dengan notifikasi.</p>
+                        <div class="project-links">
+                            <a href="#"><i class="fas fa-eye"></i> Demo</a>
+                            <a href="#"><i class="fab fa-github"></i> Kode</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="project-card animate delay-1">
+                    <img src="p2.jpg" alt="Proyek 2" class="project-img">
+                    <div class="project-info">
+                        <h3 class="project-title">Aplikasi Manajemen Inventaris</h3>
+                        <p>Sistem berbasis web untuk mengelola inventaris barang dengan fitur barcode scanning.</p>
+                        <div class="project-links">
+                            <a href="#"><i class="fas fa-eye"></i> Demo</a>
+                            <a href="#"><i class="fab fa-github"></i> Kode</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="project-card animate delay-2">
+                    <img src="e learning.jpg" alt="Proyek 3" class="project-img">
+                    <div class="project-info">
+                        <h3 class="project-title">Website E-Learning</h3>
+                        <p>Platform pembelajaran online dengan fitur video conference dan manajemen kursus.</p>
+                        <div class="project-links">
+                            <a href="#"><i class="fas fa-eye"></i> Demo</a>
+                            <a href="#"><i class="fab fa-github"></i> Kode</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <section id="contact">
+        <div class="container">
+            <h2 class="section-title">Kontak</h2>
+            <div class="contact-form animate">
+                <form>
+                    <div class="form-group">
+                        <label for="name">Nama</label>
+                        <input type="text" id="name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email</label>
+                        <input type="email" id="email" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="message">Pesan</label>
+                        <textarea id="message" required></textarea>
+                    </div>
+                    <button type="submit" class="submit-btn">Kirim Pesan</button>
+                    <div style="text-align:center; margin-top: 20px;">
+    <a href="https://wa.me/6287877903389" target="_blank" class="submit-btn" style="background:#25D366;">
+        <i class="fab fa-whatsapp"></i> Chat via WhatsApp
+    </a>
+</div>
+
+                </form>
+            </div>
+        </div>
+    </section>
+    
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 Haidir Umar. All rights reserved.</p>
+        </div>
+    </footer>
+    
+    <script>
+        // Dark mode toggle
+        const darkModeToggle = document.getElementById('darkModeToggle');
+        const body = document.body;
+        
+        // Check for saved user preference
+        if (localStorage.getItem('darkMode') === 'enabled') {
+            body.classList.add('dark-mode');
+            darkModeToggle.innerHTML = '<i class="fas fa-sun"></i>';
+        }
+        
+        darkModeToggle.addEventListener('click', () => {
+            body.classList.toggle('dark-mode');
+            
+            if (body.classList.contains('dark-mode')) {
+                localStorage.setItem('darkMode', 'enabled');
+                darkModeToggle.innerHTML = '<i class="fas fa-sun"></i>';
+            } else {
+                localStorage.setItem('darkMode', 'disabled');
+                darkModeToggle.innerHTML = '<i class="fas fa-moon"></i>';
+            }
+        });
+        
+        // Animation on scroll
+        const animateElements = document.querySelectorAll('.animate');
+        
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = 1;
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, { threshold: 0.1 });
+        
+        animateElements.forEach(element => {
+            element.style.opacity = 0;
+            element.style.transform = 'translateY(20px)';
+            element.style.transition = 'opacity 0.6s ease-out, transform 0.6s ease-out';
+            observer.observe(element);
+        });
+        
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+        // Greeting otomatis
+window.addEventListener('DOMContentLoaded', () => {
+    const hours = new Date().getHours();
+    let greeting = "Halo!";
+
+    if (hours < 12) greeting = "Selamat pagi 🌞";
+    else if (hours < 18) greeting = "Selamat siang 🌤️";
+    else greeting = "Selamat malam 🌙";
+
+    const greetingElement = document.createElement('p');
+    greetingElement.textContent = greeting;
+    greetingElement.style.textAlign = 'center';
+    greetingElement.style.marginTop = '10px';
+    greetingElement.style.fontWeight = 'Segoe UI';
+    document.querySelector('header .container').appendChild(greetingElement);
+});
+
+// Submit contact form
+document.querySelector('.contact-form form').addEventListener('submit', function(e) {
+    e.preventDefault(); // Mencegah reload
+    const name = document.getElementById('name').value.trim();
+    const email = document.getElementById('email').value.trim();
+    const message = document.getElementById('message').value.trim();
+
+    if (name && email && message) {
+        alert(`Terima kasih ${name}! Pesanmu sudah terkirim 👌`);
+        this.reset();
+    } else {
+        alert('Mohon isi semua kolom ya!');
+    }
+});
+
+    </script>
+</body>
+</html>
